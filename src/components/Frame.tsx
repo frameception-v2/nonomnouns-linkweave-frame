@@ -7,6 +7,7 @@ import sdk, {
   type Context,
 } from "@farcaster/frame-sdk";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "~/components/ui/card";
+import { SOCIAL_LINKS, RECENT_LINKS } from "~/lib/constants";
 
 import { config } from "~/components/providers/WagmiProvider";
 import { PurpleButton } from "~/components/ui/PurpleButton";
@@ -17,19 +18,51 @@ import { createStore } from "mipd";
 import { Label } from "~/components/ui/label";
 import { PROJECT_TITLE } from "~/lib/constants";
 
-function ExampleCard() {
+function SocialLinksCard() {
   return (
     <Card className="border-neutral-200 bg-white">
       <CardHeader>
-        <CardTitle className="text-neutral-900">Welcome to the Frame Template</CardTitle>
+        <CardTitle className="text-neutral-900">Social Links</CardTitle>
         <CardDescription className="text-neutral-600">
-          This is an example card that you can customize or remove
+          Connect with nonomnouns
         </CardDescription>
       </CardHeader>
-      <CardContent className="text-neutral-800">
-        <p>
-          Your frame content goes here. The text is intentionally dark to ensure good readability.
-        </p>
+      <CardContent className="text-neutral-800 space-y-2">
+        {SOCIAL_LINKS.map((link, index) => (
+          <PurpleButton
+            key={index}
+            onClick={() => sdk.actions.openUrl(link.url)}
+            className="w-full justify-start gap-2"
+          >
+            <span>{link.icon}</span>
+            <span>{link.name}</span>
+          </PurpleButton>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function RecentLinksCard() {
+  return (
+    <Card className="border-neutral-200 bg-white">
+      <CardHeader>
+        <CardTitle className="text-neutral-900">Recent Links</CardTitle>
+        <CardDescription className="text-neutral-600">
+          Shared by nonomnouns
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="text-neutral-800 space-y-2">
+        {RECENT_LINKS.map((link, index) => (
+          <PurpleButton
+            key={index}
+            onClick={() => sdk.actions.openUrl(link.url)}
+            className="w-full justify-start gap-2"
+          >
+            <span>{link.icon}</span>
+            <span>{link.title}</span>
+          </PurpleButton>
+        ))}
       </CardContent>
     </Card>
   );
@@ -137,7 +170,9 @@ export default function Frame(
     >
       <div className="w-[300px] mx-auto py-2 px-2">
         <h1 className="text-2xl font-bold text-center mb-4 text-neutral-900">{title}</h1>
-        <ExampleCard />
+        <SocialLinksCard />
+        <div className="h-4" />
+        <RecentLinksCard />
       </div>
     </div>
   );
