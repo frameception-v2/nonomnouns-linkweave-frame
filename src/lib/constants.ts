@@ -1,6 +1,6 @@
-export const PROJECT_ID = 'linkweave-frame';
+export const PROJECT_ID = 'LinkWeave Frame';
 export const PROJECT_TITLE = "LinkWeave Frame";
-export const PROJECT_DESCRIPTION = "A link tree frame for nonomnouns by nonom.base.eth";
+export const PROJECT_DESCRIPTION = "A decentralized link-sharing frame built on Farcaster - organize and share your web presence";
 
 export const SOCIAL_LINKS = [
   {
